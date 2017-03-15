@@ -1,0 +1,11 @@
+applications:
+- path: .
+  disk_quota: 1024M
+  host: devopsquestionairre
+  name: formapplication
+  command: node server/app.js
+  domain: mybluemix.net
+  instances: 1
+  memory: 256M
+  services:
+         - Project_Liberty_DB

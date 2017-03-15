@@ -1,0 +1,334 @@
+
+    <nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="fluid-container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <a href="http://www.ibm.com/devops" target="_blank"><img src="app/IBMlogow.png" height="52" style="margin-left: 7%" onload="window.scrollTo(0,0);"></a>
+            </div>
+            <div class="navbar-header page-scroll">&emsp;&emsp;</div>
+
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ngadmp-nav-2">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">DevOps Questionairre </a>
+            </div>
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse" id="ngadmp-nav-2">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden li-nav">
+                        <a href="#page-top"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<div class="container">
+<div class="col-lg-11 col-lg-offset-1" style="margin-top: 7%;">
+    <form>
+    
+        <!-- NAME INPUT -->
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" class="form-control" name="name" ng-model="formData.name">
+        </div>
+        
+        <div class="form-group">
+            <label>Project Manager Email Id</label>
+            <input type="text" class="form-control" name="name" ng-model="formData.projectid" ng-change="emailFunc()">
+            <p ng-show="ibmid" class="help-block"> A Valid IBM Email ID is required. </p>  
+        </div>
+
+         <div class="form-group">
+            <label>UOM Id</label>
+            <input type="text" class="form-control" name="name" ng-model="formData.uomid">
+        </div>
+
+        <div class="form-group">
+            <label>Project Id</label>
+            <input type="text" class="form-control" name="name" ng-model="formData.projid" minlength="4" maxlength="15" required="[A-Z0-9-]">
+        </div>
+
+        <label>Is your project following the below DevOps Practices?<br></label>
+
+    <div class="samriddhi row">
+    <div class="row" style="margin-left: 10%;">
+        <label>Is Continuous Business Planning done? : </label>
+        <div class="form-group">
+           <!--  <div class="radio"> -->
+                <label>
+                    <input type="radio" name="contbus" value="yescontbus" ng-model="formData.contbus" ng-change="YesContBus(formData.contbus)">
+                    Yes
+                </label> &emsp; &emsp; 
+            <!-- </div>
+            <div class="radio"> -->
+                <label>
+                    <input type="radio" name="contbus" value="nocontbus" ng-model="formData.contbus" ng-change="NoContBus(formData.contbus)">
+                    No
+                </label>
+
+        </div> 
+        </div>
+        
+        <div class="row" style="margin-top: 3%;">
+        <div ng-show="showContbus" style="margin-left: 10%">
+        <div class="col-lg-5 sound" >
+        <label>Is Requirement Grooming done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="reqgroom" value="yesreqgroom" ng-model="formData.reqgroom" ng-change="YesReqGroom(formData.reqgroom)">
+                    Yes
+                </label> &emsp; &emsp; 
+                <label>
+                    <input type="radio" name="reqgroom" value="noreqgroom" ng-model="formData.reqgroom" ng-change="NoReqGroom(formData.reqgroom)">
+                    No
+                </label>
+             <div ng-show="showYesreqgroom" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+             <table>
+                <tr ng-repeat="x in tools">
+                    <td style="width: 50px;"> <input ng-model="reqgroomtext" id={{x}} class="reqgroomtext" type="checkbox" value={{x}} > </td>
+                    <td> {{ x }} </td>
+                </tr>
+            </table>
+             </div>
+        </div>
+        </div>
+        
+        <div class="col-lg-5 sound">
+        <label>Is Iteration Planning done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="iterplan" value="yesiterplan" ng-model="formData.iterplan" ng-change="YesIterPlan(formData.iterplan)">
+                    Yes
+                </label> &emsp; &emsp; 
+                <label>
+                    <input type="radio" name="iterplan" value="noiterplan" ng-model="formData.iterplan" ng-change="NoIterPlan(formData.iterplan)">
+                    No
+                </label>
+            <div ng-show="showYesiterplan" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+            <table>
+                <tr ng-repeat="x in tools">
+                    <td style="width: 50px;"> <input ng-model="iterplantext" id={{x}} class="iterplantext" type="checkbox" value={{x}} > </td>
+                    <td> {{ x }} </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+     <div class="samriddhi row">
+        <div class="row" style="margin-left: 10%;">
+        <label>Is Collaborative Development done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="collabdev" value="yescollabdev" ng-model="formData.collabdev" ng-change="YesCollabDev(formData.collabdev)">
+                    Yes
+                </label> &emsp; &emsp; 
+                <label>
+                    <input type="radio" name="collabdev" value="nocollabdev" ng-model="formData.collabdev" ng-change="NoCollabDev(formData.collabdev)">
+                    No
+                </label>
+        </div> 
+        </div>
+        <div class="row" style="margin-top: 3%;">
+        <div ng-show="showcollabdev">
+        <div class="col-lg-3 sound">
+        <label>Is Config Management done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="configmgmt" value="yesconfigmgmt" ng-model="formData.configmgmt" ng-change="YesConfigMgmt(formData.configmgmt)">
+                    Yes
+                </label> &emsp; &emsp; 
+                <label>
+                    <input type="radio" name="configmgmt" value="noconfigmgmt" ng-model="formData.configmgmt" ng-change="NoConfigMgmt(formData.configmgmt)">
+                    No
+                </label>
+            <div ng-show="showYesconfigmgmt" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+            <table>
+                <tr ng-repeat="x in tools">
+                    <td style="width: 50px;"> <input ng-model="configmgmttext" id={{x}} class="configmgmttext" type="checkbox" value={{x}} > </td>
+                    <td> {{ x }} </td>
+                </tr>
+            </table>
+        </div> 
+        </div>
+        </div>
+        
+        <div class="col-lg-3 sound">
+        <label>Is Build Management Done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="buildmgmt" value="yesbuildmgmt" ng-model="formData.buildmgmt" ng-change="YesBuildMgmt(formData.buildmgmt)">
+                    Yes
+                </label> &emsp; &emsp; 
+                <label>
+                    <input type="radio" name="buildmgmt" value="nobuildmgmt" ng-model="formData.buildmgmt" ng-change="NoBuildMgmt(formData.buildmgmt)">
+                    No
+                </label>
+            <div ng-show="showYesbuildmgmt" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+            <table>
+                <tr ng-repeat="x in tools">
+                    <td style="width: 50px;"> <input ng-model="buildmgmttext" id={{x}} class="buildmgmttext" type="checkbox" value={{x}} > </td>
+                    <td> {{ x }} </td>
+                </tr>
+            </table> 
+            </div>
+        </div>
+        </div>
+        
+        <div class="col-lg-4 sound">
+        <label>Is Static Quality Assurance done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="sqa" value="yessqa" ng-model="formData.sqa" ng-change="YesSQA(formData.sqa)">
+                    Yes
+                </label> &emsp; &emsp; 
+                <label>
+                    <input type="radio" name="sqa" value="nosqa" ng-model="formData.sqa" ng-change="NoSQA(formData.sqa)">
+                    No
+                </label>
+            <div ng-show="showYessqa" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+            <table>
+                <tr ng-repeat="x in tools">
+                    <td style="width: 50px;"> <input ng-model="sqatext" id={{x}} class="sqatext" type="checkbox" value={{x}} > </td>
+                    <td> {{ x }} </td>
+                </tr>
+            </table>
+        </div>
+        </div>
+        </div>
+        </div> 
+    </div>
+    </div>
+
+     <div class="samriddhi row">
+        <div class="row" style="margin-left: 10%;">
+        <label>Is Continuous Testing done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="conttest" value="yesconttest" ng-model="formData.conttest" ng-change="YesContTest(formData.conttest)">
+                    Yes
+                </label> &emsp; &emsp; 
+                <label>
+                    <input type="radio" name="conttest" value="noconttest" ng-model="formData.conttest" ng-change="NoContTest(formData.conttest)">
+                    No
+                </label>
+        </div> 
+        </div>
+        <div class="row" style="margin-top: 3%;">
+        <div ng-show="showTesting">
+        <div class="col-lg-3 sound">
+            <label>Is Unit Testing done? : </label>
+            <div class="form-group">
+                    <label>
+                        <input type="radio" name="unittest" value="yesunittest" ng-model="formData.unittest" ng-change="YesUnitTest(formData.unittest)">
+                        Yes
+                    </label> &emsp; &emsp; 
+                    <label>
+                        <input type="radio" name="unittest" value="nounittest" ng-model="formData.unittest" ng-change="NoUnitTest(formData.unittest)">
+                        No
+                    </label>
+                <div ng-show="showYesunittest" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+                <table>
+                    <tr ng-repeat="x in tools">
+                        <td style="width: 50px;"> <input ng-model="unittesttext" id={{x}} class="unittesttext" type="checkbox" value={{x}} > </td>
+                        <td> {{ x }} </td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+            </div>
+            
+            <div class="col-lg-4 sound">
+            <label>Is Automated integration testing done? : </label>
+            <div class="form-group">
+                    <label>
+                        <input type="radio" name="integtest" value="yesintegtest" ng-model="formData.integtest" ng-change="YesIntegTest(formData.integtest)">
+                        Yes
+                    </label> &emsp; &emsp;
+                    <label>
+                        <input type="radio" name="integtest" value="nointegtest" ng-model="formData.integtest" ng-change="NoIntegTest(formData.integtest)">
+                        No
+                    </label>
+                <div ng-show="showYesintegtest" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+                <table>
+                    <tr ng-repeat="x in tools">
+                        <td style="width: 50px;"> <input ng-model="integtesttext" id={{x}} class="integtesttext" type="checkbox" value={{x}} > </td>
+                        <td> {{ x }} </td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+            </div>
+
+            <div class="col-lg-4 sound">
+            <label>Is Automated functional testing done? : </label>
+            <div class="form-group">
+                <label>
+                    <input type="radio" name="functest" value="yesfunctest" ng-model="formData.functest" ng-change="YesFuncTest(formData.functest)">
+                    Yes
+                </label> &emsp; &emsp;
+                <label>
+                    <input type="radio" name="functest" value="nofunctest" ng-model="formData.functest" ng-change="NoFuncTest(formData.functest)">
+                    No
+                </label>
+                <div ng-show="showYesfunctest" style="margin-left: 10%; margin-top: 10%">
+            <p> Please select the tools used </p>
+                    <table>
+                        <tr ng-repeat="x in tools">
+                            <td style="width: 50px;"> <input ng-model="functesttext" id={{x}} class="functesttext" type="checkbox" value={{x}} > </td>
+                            <td> {{ x }} </td>
+                        </tr>
+                    </table>
+                </div>
+            </div> 
+            </div>
+        </div>
+        </div>
+        
+    </div>
+
+     <div class="samriddhi row">
+        <div class="row" style="margin-left: 10%;">
+        <label>Is Deployment Automation done? : </label>
+        <div class="form-group">
+                <label>
+                    <input type="radio" name="depauto" value="yesdepauto" ng-model="formData.depauto" ng-change="YesDepAuto(formData.depauto)">
+                    Yes
+                </label> &emsp; &emsp;
+                <label>
+                    <input type="radio" name="depauto" value="nodepauto" ng-model="formData.depauto" ng-change="NoDepAuto(formData.depauto)">
+                    No
+                </label>
+            <div ng-show="showYesdepauto" style="margin-left: 10%; margin-top: 3%">
+            <p> Please select the tools used </p>
+            <table>
+                        <tr ng-repeat="x in tools">
+                            <td style="width: 50px;"> <input ng-model="depautotext" id={{x}} class="depautotext" type="checkbox" value={{x}} > </td>
+                            <td> {{ x }} </td>
+                        </tr>
+                    </table>
+        </div>
+        </div>
+        </div>
+    </div>
+        <div style="margin-left: 10%; margin-top:3%">
+        <button type="submit" class="btn btn-danger btn-lg" ng-click="submitform()"> Submit</button>
+        </div>
+    </form>
+    <br><br><br>
+</div>
+</div>
